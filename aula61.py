@@ -1,0 +1,68 @@
+"""
+Calculo do primeiro dígito do CPF
+CPF: 746.824.890-70
+Colete a soma dos 9 primeiros dígitos do CPF
+multiplicando cada um dos valores por uma
+contagem regressiva começando de 10
+
+Ex.:  746.824.890-70 (746824890)
+   10  9  8  7  6  5  4  3  2
+*  7   4  6  8  2  4  8  9  0
+   70  36 48 56 12 20 32 27 0
+
+Somar todos os resultados: 
+70+36+48+56+12+20+32+27+0 = 301
+Multiplicar o resultado anterior por 10
+301 * 10 = 3010
+Obter o resto da divisão da conta anterior por 11
+3010 % 11 = 7
+Se o resultado anterior for maior que 9:
+    resultado é 0
+contrário disso:
+    resultado é o valor da conta
+
+O primeiro dígito do CPF é 7
+"""
+
+while True:
+    cpf = input('Dgite o CPF a ser validado: ')
+    separar_ponto = cpf.split('.')
+    juntar_sponto = ''.join(separar_ponto)
+    separar_traco = juntar_sponto.split('-')
+    cpf_limpo = ''.join(separar_traco)
+    if len(cpf_limpo) != 11:
+        print('Você colocou digitos a mais ou a menos no seu CPF, por favor digite novamente.')
+
+    else:
+        ultimos = cpf_limpo[9:]
+        nove_digito = cpf_limpo[:9]
+
+    if not cpf_limpo.isdigit():
+        print('Digite apenas números.')
+
+    else:
+        lista_num = [int(d) for d in nove_digito]
+        lista_ult = [int(di) for di in ultimos]
+
+    soma = 0
+    contador = 10
+    for digito in lista_num:
+        multiplicacao = digito * contador
+        soma += multiplicacao
+        contador -= 1
+
+    resto = (soma * 10) % 11
+
+    if resto > 9:
+        if lista_ult[0] == 0:
+            print('CPF válido.')
+
+        else:
+            print('CPF inválido.')
+
+    else:
+        if lista_ult[0] == resto:
+            print('CPF válido.')
+
+        else:
+            print('CPF inválido.')

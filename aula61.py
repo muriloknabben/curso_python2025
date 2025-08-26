@@ -26,10 +26,8 @@ O primeiro dígito do CPF é 7
 
 while True:
     cpf = input('Dgite o CPF a ser validado: ')
-    separar_ponto = cpf.split('.')
-    juntar_sponto = ''.join(separar_ponto)
-    separar_traco = juntar_sponto.split('-')
-    cpf_limpo = ''.join(separar_traco)
+    cpf_limpo = cpf.replace(".", "").replace("-", "")
+    
     if len(cpf_limpo) != 11:
         print('Você colocou digitos a mais ou a menos no seu CPF, por favor digite novamente.')
 
@@ -41,17 +39,15 @@ while True:
         print('Digite apenas números.')
 
     else:
-        lista_num = [int(d) for d in nove_digito]
         lista_ult = [int(di) for di in ultimos]
 
-    soma = 0
+    resultado = 0
     contador = 10
-    for digito in lista_num:
-        multiplicacao = digito * contador
-        soma += multiplicacao
+    for digito in nove_digito:
+        resultado += int(digito) * contador
         contador -= 1
-
-    resto = (soma * 10) % 11
+    
+    resto = (resultado * 10) % 11
 
     if resto > 9:
         if lista_ult[0] == 0:

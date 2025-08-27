@@ -30,12 +30,19 @@ while True:
     cpf_limpo = cpf.replace(".", "").replace("-", "")
 
     if len(cpf_limpo) != 11 or not cpf_limpo.isdigit():
-        print('CPF inválido, digite 11 números.')
+        print('CPF inválido, por favor digite 11 números.')
         continue
 
-    numeros = [int(d) for d in cpf_limpo]
+    numeros = []
+    for d in cpf_limpo:
+        numeros.append(int(d))
 
-    soma1 = sum(numeros[i] * (10 - i) for i in range(9))
+    soma1 = 0
+    contador = 10
+    for i in range(9):
+        soma1 += numeros[i] * contador
+        contador -= 1
+
     resto1 = (soma1 * 10) % 11
     if resto1 == 10:
         resto1 = 0
@@ -44,7 +51,12 @@ while True:
         print('CPF inválido.')
         continue
 
-    soma2 = sum(numeros[i] * (11 - i) for i in range(10))
+    soma2 = 0
+    contador = 11
+    for i in range(10):
+        soma2 += numeros[i] * contador
+        contador -= 1
+
     resto2 = (soma2 * 10) % 11
     if resto2 == 10:
         resto2 = 0

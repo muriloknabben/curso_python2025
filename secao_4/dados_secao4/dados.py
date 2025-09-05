@@ -7,3 +7,8 @@ produtos = [
     {'nome': 'produto 2', 'preço': 105.87},
     {'nome': 'produto 4', 'preço': 69.90}
 ]
+
+# aula 107:
+
+cidades = ['Salvador', 'Ubatuba', 'Belo Horizonte']
+estados = ['BA', 'SP', 'MG', 'RJ']
